@@ -1,0 +1,110 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HorizontalCard from "../components/HorizontalCard.astro";
+import { getCollection } from "astro:content";
+import createSlug from "../lib/createSlug"
+
+const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const last_posts = posts.slice(0, 3);
+---
+
+<BaseLayout sideBarActiveItemID="home">
+  <div class="pb-12 mt-5">
+    <div class="text-xl py-1">Merhabalar</div>
+    <div class="text-5xl font-bold">Ben Talha Tabak</div>
+    <div class="text-3xl py-3 font-bold">Yazılım Geliştiricisi</div>
+    <div class="py-2">
+      <text class="text-lg">
+        This is <b>Astrofy</b> a free and open-source template for your Personal Portfolio Website built with Astro and TailwindCSS.
+        Create in minutes a website with Blog, CV, Project Section, Store and RSS Feed. I hope you find
+        it useful!
+      </text>
+    </div>
+    <div class="mt-8">
+      <a class="btn" href="mailto:atalhatabak@gmail.com" target="_blank"> Bana Ulaşın</a>
+
+    </div>
+  </div>
+
+  <div>
+    <div class="text-3xl w-full font-bold mb-2">Çalışma Deneyimim</div>
+  </div>
+
+  <HorizontalCard
+    title="billursekerleme.com"
+    img="/billursekerleme.webp"
+    desc="Wordpress ve Woocommerce ile yapılmış bir E Ticaret sitesi"
+    url="https://www.billursekerleme.com/"
+    badge="2024 Freelance"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="covalentquality.com"
+    img="/covalentquality.webp"
+    desc="Wordpress ile yapılmış tanıtım sitesi"
+    url="https://covalentquality.com/"
+    badge="2023 Freelance"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="amanosconstruction"
+    img="/amanosconstruction.webp"
+    desc="Wordpress ile yapılmış tanıtım sitesi"
+    url="https://amanoscontruction.com"
+    badge="2023 Freelance"
+  />
+
+  <div>
+    <div class="text-3xl w-full font-bold mb-2">Son Projelerim</div>
+  </div>
+
+  <HorizontalCard
+    title="ReservationAppApi"
+    img="/reservation.webp"
+    desc="Laravel ile yazılmış bir rezervasyon sistemi için API"
+    url="https://github.com/atalhatabak/ReservationAppMobile"
+    badge="2023 Deneysel"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="ReservationAppMobile"
+    img="/reservation.webp"
+    desc="React Native ile yazılmış bir rezervasyon uygulaması"
+    url="https://github.com/atalhatabak/ReservationAppMobile"
+    badge="2023 Deneysel"
+
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="PyTranslator"
+    img="/Translator.webp"
+    desc="Kısayollar ile panodan otomatik çeviri yapan masaüstü çeviri uygulaması"
+    url="https://github.com/atalhatabak/PyTranslator"
+    badge="2022"
+  />
+<!--
+  <div>
+    <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
+  </div>
+
+  {
+    last_posts.map((post) => (
+      <>
+        <HorizontalCard
+          title={post.data.title}
+          img={post.data.heroImage}
+          desc={post.data.description}
+          url={"/blog/" + createSlug(post.data.title, post.slug)}
+          target="_self"
+          badge={post.data.badge}
+        />
+        <div class="divider my-0" />
+      </>
+    ))
+  }
+ -->
+
+
+
+</BaseLayout>
